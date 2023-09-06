@@ -46,6 +46,11 @@ namespace AZKviz
             }
         }
 
+        /// <summary>
+        /// Event Handles Confirm Button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Confirm_Button_Click(object sender, RoutedEventArgs e)
         {
             if(_Count == 2)
@@ -76,6 +81,11 @@ namespace AZKviz
             this.Close();
         }
 
+        /// <summary>
+        /// Handles closing Window and enabling MainWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _mainWindow.IsEnabled = true;

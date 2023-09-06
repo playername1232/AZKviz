@@ -119,7 +119,9 @@ namespace AZKviz
 
             InitializeSelected();
             InitializePlayingGrid();
-            //InitializeStreaming();
+
+
+            //InitializeStreaming(); -- Not necessary
 
             StreamingProgress_ProgressBar.Value = StreamingProgress_ProgressBar.Maximum;
             StreamingCountdown_Label.Content = $"Zbývá: {StreamingProgress_ProgressBar.Value} sekund";
@@ -134,9 +136,13 @@ namespace AZKviz
             image = new BitmapImage(new Uri($@"{Environment.CurrentDirectory}\images\BluePlayerCustom.png"));
             BluePlayerImage_Image.Source = image;
 
-            InitiatePlayerSelection(1);
+            InitiatePlayerCreationWindow(1);
         }
 
+        /// <summary>
+        /// Saves the error caught by an Exception into error file
+        /// </summary>
+        /// <param name="e">Handled Exception</param>
         void SaveException(Exception e)
         {
             if(!Directory.Exists($@"{Environment.CurrentDirectory}\Errors"))
@@ -148,6 +154,9 @@ namespace AZKviz
             sw.Dispose();
         }
 
+        /// <summary>
+        /// Initializes Playing AZ Kviz grid by slowly making it visible
+        /// </summary>
         void InitializePlayingGrid()
         {
             PlayingGround_Canvas.Visibility = Visibility.Visible;
@@ -160,7 +169,11 @@ namespace AZKviz
             PlayingGround_Canvas.Visibility = Visibility.Hidden;
         }
 
-        async void InitiatePlayerSelection(int count)
+        /// <summary>
+        /// Intiates Player creation Window
+        /// </summary>
+        /// <param name="count"></param>
+        async void InitiatePlayerCreationWindow(int count)
         {
             await Task.Delay(1000);
             NicknameSelection newWin = new NicknameSelection(this, count);
@@ -169,7 +182,11 @@ namespace AZKviz
             this.IsEnabled = false;
         }
 
-        void ShowPlayerSelection(int count)
+        /// <summary>
+        /// Shows player creating window 
+        /// </summary>
+        /// <param name="count"></param>
+        void ShowPlayerCreationWindow(int count)
         {
             NicknameSelection newWin = new NicknameSelection(this, count);
             newWin.Owner = this;
@@ -177,6 +194,9 @@ namespace AZKviz
             this.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Timer tick
+        /// </summary>
         private async void TimerTick()
         {
             if (_Timer == 0)
@@ -290,6 +310,11 @@ namespace AZKviz
             }
         }
 
+        /// <summary>
+        /// Changes Default Alternative color to Invalid color and viceversa
+        /// </summary>
+        /// <param name="alternative"></param>
+        /// <returns></returns>
         string FromAlternativeColor(string alternative)
         {
             if (alternative == DefaultAlternativeColor)
@@ -300,6 +325,14 @@ namespace AZKviz
             return alternative;
         }
 
+        /// <summary>
+        /// Modifies Hex founds by its name
+        /// </summary>
+        /// <param name="hexName">Name of the Hexagon</param>
+        /// <param name="color">Color of Hexagon</param>
+        /// <param name="strokeColor">Stroke color of Hexagon</param>
+        /// <param name="strokeThickness">Stroke thickness of Hexagon</param>
+        /// <param name="FontColor">FontColor for Hexagon Letter</param>
         void ModifyHexByName(string hexName, string color, string strokeColor, double strokeThickness, string FontColor)
         {
             foreach(var item in PlayingGround_Canvas.Children)
@@ -333,6 +366,11 @@ namespace AZKviz
             }
         }
 
+        /// <summary>
+        /// Changes Font Color of a Letter
+        /// </summary>
+        /// <param name="letter">Letter to modify</param>
+        /// <param name="color">FOnt Color of the Letter</param>
         void ChangeFontColor(string letter, string color)
         {
             //TODO CHANGE FONT COLOR
@@ -345,9 +383,15 @@ namespace AZKviz
                                 (_innerItem as TextBlock).Foreground = (Brush)new BrushConverter().ConvertFromString(color);
         }
 
+        //Nothing to be found here
         private void Hexagon_Path_Blank(object sender, MouseButtonEventArgs e)
         { /*YEEEEEEEEEEEEEEEEEEEEEEEEET*/ }
 
+        /// <summary>
+        /// Event that is called when user clicks on Hexagon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Hexagon_Path_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (AnimationOnGoing)
@@ -382,10 +426,15 @@ namespace AZKviz
 
             UsedHexagonName = (sender as System.Windows.Shapes.Path).Name;
 
-            ShowSelected(FromAlternativeColor((sender as System.Windows.Shapes.Path).Fill.ToString()));
+            ShowSelectedLetter(FromAlternativeColor((sender as System.Windows.Shapes.Path).Fill.ToString()));
             HideGrid();
         }
 
+        /// <summary>
+        /// An event that is called when player enters Hexagon with his mouse cursor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Hexagon_Path_MouseEnter(object sender, MouseEventArgs e)
         {
             if((sender as System.Windows.Shapes.Path).Fill.ToString() == DefaultColor)
@@ -395,6 +444,11 @@ namespace AZKviz
                 (sender as System.Windows.Shapes.Path).Fill = (Brush)new BrushConverter().ConvertFromString(InvalidAlternativeColor);
         }
 
+        /// <summary>
+        /// An event that is called when player enters Hexagon with his mouse cursor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Hexagon_Path_MouseLeave(object sender, MouseEventArgs e)
         {
             if ((sender as System.Windows.Shapes.Path).Fill.ToString() == DefaultAlternativeColor)
@@ -404,6 +458,9 @@ namespace AZKviz
                 (sender as System.Windows.Shapes.Path).Fill = (Brush)new BrushConverter().ConvertFromString(InvalidColor);
         }
 
+        /// <summary>
+        /// Hides playing grid
+        /// </summary>
         private async void HideGrid()
         {
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(1));
@@ -413,6 +470,9 @@ namespace AZKviz
             AnimationOnGoing = false;
         }
 
+        /// <summary>
+        /// Shows playing grid
+        /// </summary>
         private async void ShowGrid()
         {
             AnimationOnGoing = true;
@@ -441,11 +501,16 @@ namespace AZKviz
             OnGoingQuestion = false;
         }
 
-        private void ShowSelected(string pathColor, bool changevisibility = true)
+        /// <summary>
+        /// Shows Selected Letter scene with selected Hex with color of the hex from Playing Grid
+        /// </summary>
+        /// <param name="hexColor">Hexagon Color</param>
+        /// <param name="changevisibility"></param>
+        private void ShowSelectedLetter(string hexColor, bool changevisibility = true)
         {
             AnimationOnGoing = true;
             _Timer = Maximum;
-            Hexagon_Selected_Path.Fill = (Brush)new BrushConverter().ConvertFromString(pathColor);
+            Hexagon_Selected_Path.Fill = (Brush)new BrushConverter().ConvertFromString(hexColor);
 
             if (Hexagon_Selected_Path.Fill.ToString() == InvalidColor)
                 SelectedLetter_Label.Foreground = (Brush)new BrushConverter().ConvertFromString(WhiteColor);
@@ -464,6 +529,9 @@ namespace AZKviz
             OnGoingQuestion = true;
         }
 
+        /// <summary>
+        /// Hides Selected Letter scene
+        /// </summary>
         private async void HideSelected()
         {
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(1));
@@ -478,7 +546,7 @@ namespace AZKviz
             AnimationOnGoing = false;
         }
 
-
+        [Obsolete("Not used - Used to be for first launch initialization")]
         void InitializeStreaming()
         {
             StreamingProgress_ProgressBar.Value = StreamingProgress_ProgressBar.Maximum;
@@ -494,6 +562,9 @@ namespace AZKviz
             StreamingCanvas_Canvas.Visibility = Visibility.Hidden;
         }
 
+        /// <summary>
+        /// Shows Streaming scene
+        /// </summary>
         void ShowStreaming()
         {
             AnimationOnGoing = true;
@@ -515,6 +586,9 @@ namespace AZKviz
             this.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Hides Streaming scene
+        /// </summary>
         private async void HideStreaming()
         {
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(1));
@@ -526,6 +600,9 @@ namespace AZKviz
             AnimationOnGoing = false;
         }
 
+        /// <summary>
+        /// Shows player's info Canvas
+        /// </summary>
         void ShowPlayerInfo()
         {
             StreamingScene = true;
@@ -534,6 +611,9 @@ namespace AZKviz
             PlayerInfoCanvas_Canvas.BeginAnimation(Canvas.OpacityProperty, animation);
         }
 
+        /// <summary>
+        /// Hides player's info Canvas
+        /// </summary>
         private async void HidePlayerInfo()
         {
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(1));
@@ -543,6 +623,11 @@ namespace AZKviz
             AnimationOnGoing = false;
         }
 
+        /// <summary>
+        /// Registers Key Press while Window is active
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (AnimationOnGoing)
@@ -727,6 +812,9 @@ namespace AZKviz
             }
         }
 
+        /// <summary>
+        /// Paints all hexes not owned by orange in gray, hiding Letters and unbinds click events
+        /// </summary>
         private void OrangeWinner()
         {
             foreach(var item in PlayingGround_Canvas.Children)
@@ -768,6 +856,9 @@ namespace AZKviz
             MessageBox.Show($"{_NickOrangePlayer} vyhrál!", "GG!", MessageBoxButton.OK);
         }
 
+        /// <summary>
+        /// Paints all hexes not owned by blue in gray, hiding Letters and unbinds click events
+        /// </summary>
         private void BlueWinner()
         {
             foreach (var item in PlayingGround_Canvas.Children)
@@ -809,11 +900,14 @@ namespace AZKviz
             MessageBox.Show($"{_NickBluePlayer} vyhrál!", "GG!", MessageBoxButton.OK);
         }
 
+        /// <summary>
+        /// Resets Grid and starts a new game
+        /// </summary>
         private void NewGame()
         {
             NamePlayerOrange_Label.Content = "Oranžový hráč";
             NamePlayerBlue_Label.Content = "Modrý hráč";
-            ShowPlayerSelection(2);
+            ShowPlayerCreationWindow(2);
 
             WinnerDecided = false;
 
@@ -849,7 +943,8 @@ namespace AZKviz
             HideStreaming();
         }
 
-        /*
+        /* An unsuccessful attempt to make a deciding of winner automatic
+
         private void Winner()
         {
             if(_ListBlueTeamUsed.Count != 0)
