@@ -1,0 +1,38 @@
+Potřebný : https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48 - Download type = Web installer | -> Run apps - Runtime
+Potřebny : https://dotnet.microsoft.com/en-us/download/dotnet/6.0 - OS Windows -> Installers x64
+
+^- Není to vir dw, musíš nainstalovat podporu architektury, kterou tahle appka používá, což je .NET Core 6.0 a .NET Framework 4.8
+
+Start => 
+1. (Umístění)\AZKviz\AZKviz\bin\Debug\net6.0-windows máš AZKviz.exe, to rozklikneš - klidně si můžeš udělat Zástupce / Shortcut dát si ji na plochu, ale samotná appka musí zůstat v té složce :D, takže ideálně nic v tý  nepřesouvej / nemaž, jen si udělej zástupce na tu appku a přesuň si ho kam chceš :D
+2. Vyskočí na tebe malý okno uprostřed obrazovky narandom si tam můžeš dát nějaký hráče / můžeš ho zavřít, to je konkrétně jedno. !!Zavírej křížkem, ne tlačítkem!!
+3. Klikni na nějaký políčko a vyzkoušej si ovládání časovače a zbarvování políček. - Po zbarvení tě to přesune zpátky na herní plochu.
+4. Proklikej si pár buněk (jakoby soutěžící odpovídal na otázku) dej tam pár oranžových, modrých, černých, prozkoušej, jestli ti fungují zvuky over all.
+4.1. ps - Pokud nestihl uběhnout zbytek časovače, než jsi označil políčko nějakou barvou, tak se časovač musí zastavit = už nebudeš slyšet pípání.. Pokud ho teda vůbec zapneš :DD
+5. Zkus určit vítěze přes bindy a vytváření nový hry.. Po vytvoření nový hry se musí pole resetovat
+
+Zvuky hracího pole / výběru =
+	Zabarvení buňky oranžově
+	Zabarvení buňky modře
+	Zabarvení buňky černě
+	Každá sekunda časovače pípne
+	Konec časovače udělá zvuk
+	Výhra jednoho z hráčů udělá zvuk výhry
+
+4. Dostaň se na obrazovku s hracím polem (Pokud jsi zrovna rozklik buňku, tak ji nějak zabarvi a dostaň se zpět LOL)
+5. Stiskni F2, aby ses dostal do Rozstřelu
+6. Obrazovka se změní a objeví se ti okénko s tím, abys zadal jméno hráče.. Tak tam nějaký hezký zadej :D.
+7. Stiskni mezerník, aby jsi zapl čas.. Nechej ho dohrát až do konce, než se sám vypne. - Zvuk se musí vypnout
+8. Stiskni T pro resetování odpočítavadla a znovu stiskni mezerník. + časovač musí mít opět zelenou barvu
+9. Nech to pár sekund běžet, idk třeba do 48sekund a pak zmáčkni T. Timer by se měl resetovat na 60sek a hudba by se měla vypnout.
+10. Znovu stiskni mezerník a nech to chvíli hrát, pak zmáčkni N - Vyskočí ti okno s tím, abys zadal jméno hráče + Hudba by se měla vypnout a časovač by se měl obnovit na 60 sekund + časovač musí mít opět zelenou barvu
+11. Stiskni znovu F2, aby ses dostal zpátky na hrací pole
+12. Vyskočí na tebe okno s tím, abys mu zadal jméno oranžového a modrého hráče - ty zadáš a stiskneš tlačítko (Vedle hracího pole máš štítky hráčů, musí se na nich změnit jména)
+
+Zvuky Rozstřelu =
+	Hudba během časovače
+	Konec časovače
+
+Tím je test hotový :D
+
+Klidně si to projeď znovu a všímej si hlasitosti jednotlivých zvuků, jestli jsou v pohodě, až moc nahlas, moc potichu :D.

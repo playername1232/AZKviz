@@ -1,0 +1,26 @@
+﻿<Window x:Class="AZKviz.NicknameSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AZKviz"
+        mc:Ignorable="d"
+        Title="Zvolte prosím jména hráčů" Height="150" Width="300" Closing="Window_Closing">
+    <Grid x:Name="NicknameSection_Grid">
+
+        <Canvas x:Name="TwoPlayers_Canvas" Visibility="Visible">
+            <Label Content="Oranžový hráč" HorizontalAlignment="Left" Height="27" Margin="35,14,0,0" VerticalAlignment="Top" Width="90"/>
+            <Label Content="Modrý hráč" Margin="43,42,183,119"/>
+            <TextBox x:Name="OrangePlayerNick_TextBox" HorizontalAlignment="Left" Height="19" Margin="125,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133"/>
+            <TextBox x:Name="BluePlayerNick_TextBox" HorizontalAlignment="Left" Height="19" Margin="125,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133"/>
+        </Canvas>
+
+        <Canvas x:Name="OnePlayer_Canvas" Visibility="Hidden">
+            <Label Content="Jméno hráče" Canvas.Left="39" Canvas.Top="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox x:Name="OnePlayer_TextBox" HorizontalAlignment="Left" Height="19" Margin="125,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133"/>
+        </Canvas>
+
+        <Button x:Name="Confirm_Button" Content="Potvrdit" HorizontalAlignment="Left" Margin="191,82,0,0" VerticalAlignment="Top" Height="21" Width="67" Click="Confirm_Button_Click"/>
+
+    </Grid>
+</Window>

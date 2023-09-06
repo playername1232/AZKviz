@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BluePlayer.png" />
+    <None Remove="BluePlayerCustom.png" />
+    <None Remove="OrangePlayer.png" />
+    <None Remove="OrangePlayerCustom.png" />
+    <None Remove="PetrProgress.PNG" />
+    <None Remove="TrackLayout.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="BluePlayer.png" />
+    <Resource Include="BluePlayerCustom.png" />
+    <Resource Include="OrangePlayer.png" />
+    <Resource Include="OrangePlayerCustom.png" />
+    <Resource Include="PetrProgress.PNG" />
+  </ItemGroup>
+
+</Project>

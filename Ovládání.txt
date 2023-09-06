@@ -1,0 +1,27 @@
+Space - ČasoMára
+Y - Oranžové políčko
+X - Modré políčko
+C - Černé políčko
+N - Nová hra
+Levá šipka - Výhra oranžového
+Pravá šipka - Výhra modrého
+
+Ovládání hrací plochy
+	Levé tlačítko myši => označí, že si políčko vybírá oranžový hráč
+	Pravé tlačítko myši => Označí, že si políčko vybírá modrý hráč
+	N => Nová hra
+	Levá šipka => Oranžový hráč se stane vítězem
+	Pravá šipka => Modrý hráč se stane vítězem
+	Šipka nahoru => Přepne do režimu rozstřelu
+
+Vybrané políčko
+	Mezerník => Zapne časovač
+	Y => Označí políčko oranžově
+	X => Označí políčko modře
+	C => Označí políčko černě
+	
+Rozstřel plocha
+	N => Změna jména
+	T => Resetování časovače
+	Mezerník => Zapnutí časovače
+	Šipka dolů => Návrat na hrací pole
